@@ -1,0 +1,19 @@
+[Unit]
+Description=Kali SOC Ingest Server (production, behind nginx)
+After=network.target
+
+[Service]
+User=soc
+Group=soc
+EnvironmentFile=/etc/default/soc-ingest
+# Run uvicorn bound to localhost; TLS is handled by nginx reverse proxy
+ExecStart=/usr/bin/env uvicorn ops.ingest.server:app --host 127.0.0.1 --port 8000 --workers 4
+Restart=on-failure
+LimitNOFILE=65536
+# Adjust private tmp / protect system files
+PrivateTmp=true
+ProtectSystem=full
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
