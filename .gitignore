@@ -1,0 +1,36 @@
+# Virtual env
+venv/
+.env
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.so
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Data directories (do not commit runtime artifacts)
+data/logs/*
+data/output/*
+data/reports/*
+data/integrity/*
+data/cache/*
+
+# Packaging
+build/

@@ -1,0 +1,14 @@
+[Unit]
+Description=Kali SOC Ingest Server
+After=network.target
+
+[Service]
+User=soc
+Group=soc
+EnvironmentFile=/etc/default/soc-ingest
+ExecStart=/usr/bin/env uvicorn ops.ingest.server:app --host 0.0.0.0 --port 5514 --ssl-certfile /etc/ssl/certs/soc_cert.pem --ssl-keyfile /etc/ssl/private/soc_key.pem --workers 4
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
